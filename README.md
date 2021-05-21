@@ -36,5 +36,5 @@ root                    (project root folder)
 ---
 * Joshua Burk: jbburk@byui.edu
 * Austin Howard: how19021@byui.edu
-* Jacob Johnson: 
-* 
+* Jacob Johnson: joh20043@byui.edu
+* Caleb Lan: lan19005@byui.edu
