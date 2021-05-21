@@ -10,7 +10,19 @@ class Console:
     Attributes:
         prompt (string): The prompt to display on each line.
     """
-     
+    def __init__(self):
+        pass
+        
+
+    def guess(self, guess_result):
+        print(guess_result)
+
+    def display_word(self, word):
+        self.hidden_word_line = ""
+        for i in word:
+            self.hidden_word_line += i + " "
+        print(self.hidden_word_line)      
+
     def read(self, prompt):
         return input(prompt)
         

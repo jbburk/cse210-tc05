@@ -26,6 +26,7 @@ class Director:
         self.jumper = Jumper()
         self.keep_playing = True
         self.word = Word()
+        self.check_guess = False
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -33,6 +34,11 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        self.word.get_word()
+        self.word.hide_word()
+        print(self.word.word)
+        
+        
         while self.keep_playing:
             self.get_inputs()
             self.do_updates()
@@ -45,6 +51,13 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+
+        self.jumper.display_para()
+
+        self.console.display_word(self.word.hidden)
+        self.new_guess = self.console.read("\nGuess a letter: ")
+        
+
         
         
     def do_updates(self):
@@ -55,6 +68,22 @@ class Director:
             self (Director): An instance of Director.
         """
         
+        self.check_guess = self.word.check_guess(self.new_guess)
+        
+        self.check_game = self.word.check_game()
+
+        if self.check_game == "Loss":
+            self.jumper.game_over()
+            self.jumper.display_para()
+            self.keep_playing = False
+
+        elif self.check_game == "Win":
+            self.keep_playing = False
+        else:
+            if self.check_guess == "you suck":
+                self.jumper.wrong_guess()
+
+        
 
     def do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -63,3 +92,4 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        self.console.guess(self.check_guess)

@@ -11,8 +11,19 @@ class Jumper:
         
     """
     def __init__(self):
-        self.jumper
+        self.parachuter = ["	 ___    ", "	/___\    ", "	\   /   ", "	 \ /   ", "	  0   ", "	 /|\  ", "	 / \   ", "    ^^^^^^^^^^^^^^"]
 
+    def wrong_guess(self):
+        self.parachuter.pop(0)
+
+    def game_over(self):
+        self.parachuter[0] = "	  X   "
+
+    def display_para(self):
+        print()
+        for i in self.parachuter:
+            print(i)
+        
 
 
     """Code taken from the Solo Checkpoint Hunter.py to use as a reference
