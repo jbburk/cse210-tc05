@@ -1,4 +1,5 @@
 import random
+import os
 
 
 class Word:
@@ -15,7 +16,8 @@ class Word:
         self.wrong_guesses = 0
         self.wrong_list =[]
         self.wordList = []
-        with open("words.txt","r") as word_file:
+        self.word_file_location = os.getcwd() + "/cse210-tc05/jumper/game/words.txt"
+        with open(self.word_file_location) as word_file:
             word_file_lines = word_file.readlines()
             for line in word_file_lines:
                 line = line.strip("\n")
