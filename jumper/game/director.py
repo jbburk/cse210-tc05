@@ -36,13 +36,13 @@ class Director:
         """
         self.word.get_word()
         self.word.hide_word()
-        print(self.word.word)
-        
         
         while self.keep_playing:
             self.get_inputs()
             self.do_updates()
             self.do_outputs()
+
+        self.console.write(f"The correct word was {self.word.realword}")
 
     def get_inputs(self):
         """Gets the inputs at the beginning of each round of play. In this case,
@@ -80,7 +80,7 @@ class Director:
         elif self.check_game == "Win":
             self.keep_playing = False
         else:
-            if self.check_guess == "you suck":
+            if self.check_guess == "That was a bad guess":
                 self.jumper.wrong_guess()
 
         

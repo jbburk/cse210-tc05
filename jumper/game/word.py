@@ -11,21 +11,23 @@ class Word:
     Attributes:
     """
     def __init__(self):
+        self.realword = ""
         self.word = []
         self.hidden = []
         self.wrong_guesses = 0
         self.wrong_list =[]
         self.wordList = []
-        self.word_file_location = os.getcwd() + "/cse210-tc05/jumper/game/words.txt"
-        with open(self.word_file_location) as word_file:
+        self.word_file_location = os.getcwd() + "/jumper/game/words.txt"
+        with open(self.word_file_location, "r") as word_file:
             word_file_lines = word_file.readlines()
             for line in word_file_lines:
-                line = line.strip("\n")
-                self.wordList.append()
+                word = line.strip("\n")
+                self.wordList.append(word)
 
 
     def get_word(self):
-        self.word = list(random.choice(self.wordList))
+        self.realword = random.choice(self.wordList)
+        self.word = list(self.realword)
         
     def hide_word(self):
         for char in self.word:
@@ -37,21 +39,21 @@ class Word:
                 for i in range(0, len(self.word)):
                     if self.word[i] == guess:
                         self.hidden[i] = guess
-                return "you got it"
+                return "You got it"
             else:
                 if guess in self.wrong_list:
                     return "You already guessed that"
                 else:
                     self.wrong_guesses += 1
                     self.wrong_list.append(guess)
-                    return "you suck"
+                    return "That was a bad guess"
 
         else:
             return "You've already guessed that"
 
     def check_game(self):
         if self.wrong_guesses == 5:
-            print("Sorry, you suck")
+            print("The Jumper lost their parachute")
             return "Loss"
         if "_ " not in self.hidden:
             print("Congrats, you got it")
